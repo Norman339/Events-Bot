@@ -39,16 +39,16 @@ A Discord bot designed to help cybersecurity club members stay informed about up
 
 5. **Run the bot**
    ```bash
-   python bot.py
+   python main.py
    ```
 
 ## Available Commands
 
-- `/help` - Show all available commands
-- `/events` - List all upcoming events
-- `/addevent [title] [date] [description]` - Add a new event (Admin only)
-- `/removeevent [title]` - Remove an event (Admin only)
-- `/cyberfact` - Get a random cybersecurity fact
+- `/sm_help` - Show all available commands
+- `/sm_events` - List all upcoming events
+- `/sm_addevent [title] [date] [description]` - Add a new event (Admin only)
+- `/sm_removeevent [title]` - Remove an event (Admin only)
+- `/sm_cyberfact` - Get a random cybersecurity fact
 
 ## Project Structure
 
