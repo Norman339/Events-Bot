@@ -53,7 +53,7 @@ class CyberBot(commands.Bot):
         synced = await self.tree.sync()
         print(f"Commands synced! Total: {len(synced)} commands")
         for cmd in synced:
-            print(f"  - Synced: /{cmd.name}")
+            print(f'  - Synced: /{cmd.name}')
     
     async def on_ready(self):
         print(f'Logged in as {self.user} (ID: {self.user.id})')
