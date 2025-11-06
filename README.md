@@ -66,7 +66,7 @@ A Discord bot designed to help cybersecurity club members stay informed about up
 - `bot/utils/config.py` - Environment variable loading
 - `.env` - Configuration file (not included in version control)
 
-## Team Roles
+## Team Roles (we all worked on these roles (;)
 
 1. **Project Manager**
    - Oversees project progress
@@ -104,5 +104,6 @@ A Discord bot designed to help cybersecurity club members stay informed about up
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
 
