@@ -14,14 +14,14 @@ class Help(commands.Cog):
     @app_commands.command(name="sm_help", description="Show all available Shellmates bot commands")
     async def help_command(self, interaction: discord.Interaction):
         embed = discord.Embed(
-            title="♛ Shellmates Chess Command Center ♛",
+            title="♛ Shellmates Command Center ♛",
             description="*Navigate the chessboard of commands with strategic precision!*\n\nHere are all the available moves for the Shellmates bot:",
             color=CHESS_GREEN
         )
         
         # Events commands section
         embed.add_field(
-            name="🎯 Event Management - Command the Chessboard",
+            name="🎯 Event Management ",
             value=(
                 "`/sm_events` - Display all upcoming events on the chessboard\n"
                 "`/sm_addevent` - Place a new event on the board (♚ Admin only)\n"
@@ -34,7 +34,7 @@ class Help(commands.Cog):
         
         # Facts commands section
         embed.add_field(
-            name="🛡️ Security Insights - Strategic Knowledge",
+            name="🛡️ Security facts ",
             value=(
                 "`/sm_fact` - Receive a random cybersecurity insight from the chess masters\n"
                 "`/sm_addfact` - Add new strategic knowledge (♚ Admin only)\n"
@@ -46,7 +46,7 @@ class Help(commands.Cog):
         
         # Help command section
         embed.add_field(
-            name="ℹ️ Strategic Assistance",
+            name="ℹ️  Assistance",
             value=(
                 "`/sm_help` - Display this strategic command overview\n"
             ),
