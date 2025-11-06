@@ -46,7 +46,7 @@ class Events(commands.Cog):
             )
             
             embed.add_field(
-                name=f"{symbol} {event['title']}",
+                name=f"{symbol} Event Title: {event['title']}",  # Changed this line
                 value=field_value,
                 inline=False
             )
@@ -57,14 +57,76 @@ class Events(commands.Cog):
     @app_commands.checks.has_permissions(administrator=True)
     @app_commands.describe(
         title="Title of the event",
-        date="Date of the event",
+        day="Day of the event (1-31)",
+        month="Month of the event (1-12)", 
+        year="Year of the event (2024 or later)",
         description="Description of the event"
     )
-    async def add_event(self, interaction: discord.Interaction, title: str, date: str, description: str):
+    async def add_event(self, interaction: discord.Interaction, title: str, day: int, month: int, year: int, description: str):
         """Place a new event on the chessboard"""
+        # Validate date inputs
+        if day < 1 or day > 31:
+            embed = discord.Embed(
+                title="❌ Invalid Day ❌",
+                description="*Day must be between 1 and 31!*\n\nPlease enter a valid day.",
+                color=discord.Color.red()
+            )
+            embed.set_footer(text="♜ Check your date format ♜")
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            return
+        
+        if month < 1 or month > 12:
+            embed = discord.Embed(
+                title="❌ Invalid Month ❌",
+                description="*Month must be between 1 and 12!*\n\nPlease enter a valid month.",
+                color=discord.Color.red()
+            )
+            embed.set_footer(text="♜ Check your date format ♜")
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            return
+        
+        if year < 2024:
+            embed = discord.Embed(
+                title="❌ Invalid Year ❌",
+                description="*Year must be 2024 or later!*\n\nPlease enter a valid year.",
+                color=discord.Color.red()
+            )
+            embed.set_footer(text="♜ Check your date format ♜")
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            return
+        
+        # Additional validation for day-month combinations
+        if month in [4, 6, 9, 11] and day > 30:  # Months with 30 days
+            embed = discord.Embed(
+                title="❌ Invalid Date ❌",
+                description=f"*Month {month} only has 30 days!*\n\nPlease enter a valid day.",
+                color=discord.Color.red()
+            )
+            embed.set_footer(text="♜ Check your date format ♜")
+            await interaction.response.send_message(embed=embed, ephemeral=True)
+            return
+        
+        if month == 2:  # February
+            # Simple leap year check
+            is_leap_year = (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+            max_feb_days = 29 if is_leap_year else 28
+            
+            if day > max_feb_days:
+                embed = discord.Embed(
+                    title="❌ Invalid Date ❌",
+                    description=f"*February {year} only has {max_feb_days} days!*\n\nPlease enter a valid day.",
+                    color=discord.Color.red()
+                )
+                embed.set_footer(text="♜ Check your date format ♜")
+                await interaction.response.send_message(embed=embed, ephemeral=True)
+                return
+        
+        # Format the date as DD/MM/YYYY
+        formatted_date = f"{day:02d}/{month:02d}/{year}"
+        
         event_data = {
             'title': title,
-            'date': date,
+            'date': formatted_date,  # Now using the formatted date
             'description': description,
             'created_by': interaction.user.id,
             'created_at': interaction.created_at.isoformat()
@@ -76,7 +138,7 @@ class Events(commands.Cog):
             description="*A new event appears on the chessboard!*",
             color=CHESS_GREEN
         )
-        embed.add_field(name="📅 Event Date", value=f"🗓️ {date}", inline=True)
+        embed.add_field(name="📅 Event Date", value=f"🗓️ {formatted_date}", inline=True)
         embed.add_field(name="📋 Event Details", value=f"📝 {description}", inline=True)
         embed.add_field(name="👑 Organizer", value=f"🎖️ {interaction.user.display_name}", inline=True)
         embed.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Chess_klt45.svg/800px-Chess_klt45.svg.png")
