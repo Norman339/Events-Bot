@@ -18,11 +18,11 @@ class Facts(commands.Cog):
     # ------------------------------
     @app_commands.command(name="sm_fact", description="Get a random Shellmates cybersecurity fact!")
     async def cyberfact(self, interaction: discord.Interaction):
-        """Display a strategic cybersecurity insight from the chess masters"""
+        """Display a strategic cybersecurity fact"""
         fact = await db.get_random_fact()
         if not fact:
             embed = discord.Embed(
-                title="♟️ No Strategic Insights Available",
+                title="♟️ No Facts Available",
                 description="*The knowledge vault is currently empty...*",
                 color=CHESS_GREEN
             )
@@ -33,7 +33,7 @@ class Facts(commands.Cog):
 
         symbol = random.choice(CHESS_SYMBOLS)
         embed = discord.Embed(
-            title=f"{symbol} Chess Master's Security Insight {symbol}",
+            title=f"{symbol} Security Fact {symbol}",
             description=f"```\n{fact}\n```",
             color=CHESS_GREEN
         )
@@ -53,12 +53,12 @@ class Facts(commands.Cog):
         await db.add_fact(fact)
         
         embed = discord.Embed(
-            title=f"✅♞ New Security Insight Added ♞✅",
-            description="*Your wisdom has been recorded in the grand chessboard of knowledge!*",
+            title=f"✅♞ New Security Fact Added ♞✅",
+            description="*Your wisdom has been recorded in the knowledge vault!*",
             color=CHESS_GREEN
         )
         embed.add_field(
-            name="📜 Strategic Insight", 
+            name="📜 Security Fact", 
             value=f"```{fact}```", 
             inline=False
         )
@@ -79,17 +79,17 @@ class Facts(commands.Cog):
     @app_commands.describe(fact="The exact text of the fact to remove")
     @app_commands.checks.has_permissions(administrator=True)
     async def removefact(self, interaction: discord.Interaction, fact: str):
-        """Remove outdated knowledge from the strategic vault"""
+        """Remove outdated knowledge from the vault"""
         success = await db.remove_fact(fact)
         
         if success:
             embed = discord.Embed(
-                title="♟️ Insight Retired ♟️",
-                description=f"*The following insight has been removed from our strategic playbook:*",
+                title="♟️ Fact Retired ♟️",
+                description=f"*The following fact has been removed from our playbook:*",
                 color=CHESS_GREEN
             )
             embed.add_field(
-                name="📜 Retired Insight",
+                name="📜 Retired Fact",
                 value=f"```{fact}```",
                 inline=False
             )
@@ -98,7 +98,7 @@ class Facts(commands.Cog):
         else:
             embed = discord.Embed(
                 title="❌ Strategic Error ❌",
-                description="*This insight was not found in our knowledge base.*\n\nCheck your notation and try again.",
+                description="*This fact was not found in our knowledge base.*\n\nCheck your notation and try again.",
                 color=discord.Color.red()
             )
             embed.set_footer(text="♝ Verify the exact wording ♝")
@@ -111,16 +111,16 @@ class Facts(commands.Cog):
     @app_commands.command(name="sm_listfacts", description="[Admin] View all cybersecurity facts in the database")
     @app_commands.checks.has_permissions(administrator=True)
     async def listfacts(self, interaction: discord.Interaction):
-        """Review the complete strategic knowledge base"""
+        """Review the complete knowledge base"""
         facts = await db.get_all_facts()
         
         if not facts:
             embed = discord.Embed(
                 title="♟️ Empty Knowledge Vault ♟️",
-                description="*No strategic insights are currently recorded.*\n\nUse `/sm_addfact` to begin building our defenses!",
+                description="*No facts are currently recorded.*\n\nUse `/sm_addfact` to begin building our defenses!",
                 color=CHESS_GREEN
             )
-            embed.set_footer(text="♜ The board awaits your wisdom ♜")
+            embed.set_footer(text="♜ The vault awaits your wisdom ♜")
             await interaction.response.send_message(embed=embed)
             return
         
@@ -131,13 +131,13 @@ class Facts(commands.Cog):
             description += f"{symbol} **{i}.** {fact}\n\n"
         
         embed = discord.Embed(
-            title="♛ Grand Chessboard of Security Insights ♛",
+            title="♛ Security Facts Collection ♛",
             description=description,
             color=CHESS_GREEN
         )
         embed.set_thumbnail(url=CHESS_BOARD_URL)
         embed.set_footer(
-            text=f"Total Insights: {len(facts)} • Strategic Knowledge Base"
+            text=f"Total Facts: {len(facts)} • Knowledge Base"
         )
         
         await interaction.response.send_message(embed=embed)
@@ -163,13 +163,13 @@ class Facts(commands.Cog):
                 if fact:
                     symbol = random.choice(CHESS_SYMBOLS)
                     embed = discord.Embed(
-                        title=f"{symbol} Daily Security Insight {symbol}",
+                        title=f"{symbol} Daily Security Fact {symbol}",
                         description=f"```\n{fact}\n```",
                         color=CHESS_GREEN
                     )
                     embed.set_thumbnail(url=CHESS_BOARD_URL)
                     embed.set_footer(
-                        text=f"♛ Daily Chess Strategy • {discord.utils.utcnow().strftime('%B %d, %Y')} ♛"
+                        text=f"♛ Daily Security Update • {discord.utils.utcnow().strftime('%B %d, %Y')} ♛"
                     )
 
                     try:
@@ -197,7 +197,7 @@ class Facts(commands.Cog):
         if isinstance(error, app_commands.MissingPermissions):
             embed = discord.Embed(
                 title="🚫 Royal Decree Required 🚫",
-                description="*Only the chess masters may modify the strategic knowledge base!*",
+                description="*Only administrators may modify the knowledge base!*",
                 color=discord.Color.red()
             )
             embed.set_footer(text="♚ Administrator privileges needed ♚")
@@ -217,5 +217,5 @@ class Facts(commands.Cog):
         await db.initialize_default_facts()
 
 async def setup(bot):
-    """Setup the Royal Facts Command Center"""
+    """Setup the Facts Command Center"""
     await bot.add_cog(Facts(bot))
