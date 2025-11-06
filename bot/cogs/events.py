@@ -17,7 +17,7 @@ class Events(commands.Cog):
         events = await db.get_events()
         if not events:
             embed = discord.Embed(
-                title="♚ Empty Chessboard ♚",
+                title="♚ Empty events board ♚",
                 description="*The board is clear... No events are scheduled yet.*\n\nUse `/sm_addevent` to plan the first event!",
                 color=CHESS_GREEN
             )
@@ -27,7 +27,7 @@ class Events(commands.Cog):
             return
         
         embed = discord.Embed(
-            title="♛ Chessboard: Upcoming Shellmates Events ♛",
+            title="♛ events board: Upcoming Shellmates Events ♛",
             description="*Strategic planning ahead! Schedule your participation wisely.*\n\u200b",
             color=CHESS_GREEN
         )
@@ -149,7 +149,7 @@ class Events(commands.Cog):
     @app_commands.checks.has_permissions(administrator=True)
     @app_commands.describe(title="Title of the event to remove")
     async def remove_event(self, interaction: discord.Interaction, title: str):
-        """Remove an event from the chessboard"""
+        """Remove an event from the sevents board"""
         removed = await db.remove_event(title)
         if removed:
             embed = discord.Embed(
