@@ -55,7 +55,7 @@ class Help(commands.Cog):
         
         # Additional chess-themed information
         embed.add_field(
-            name="♟️ Daily Strategic Insights",
+            name="♟️ Daily facts ",
             value="*Automated cybersecurity facts are shared daily across all servers!*",
             inline=False
         )
@@ -67,3 +67,4 @@ class Help(commands.Cog):
 
 async def setup(bot):
     await bot.add_cog(Help(bot))
+
