@@ -85,7 +85,7 @@ class Events(commands.Cog):
             await interaction.response.send_message(embed=embed, ephemeral=True)
             return
         
-        if year < 2024:
+        if year < 2025:
             embed = discord.Embed(
                 title="❌ Invalid Year ❌",
                 description="*Year must be 2024 or later!*\n\nPlease enter a valid year.",
@@ -280,3 +280,4 @@ class Events(commands.Cog):
 async def setup(bot):
     """Setup the Events Command Center"""
     await bot.add_cog(Events(bot))
+
