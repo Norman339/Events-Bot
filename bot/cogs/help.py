@@ -19,9 +19,11 @@ class Help(commands.Cog):
         embed.add_field(
             name="📅 Event Commands",
             value=(
-                "`/shellmates_events` - List all upcoming Shellmates events\n"
-                "`/shellmates_addevent` - Add a new event (Admin only)\n"
-                "`/shellmates_removeevent` - Remove an event (Admin only)\n"
+                "`/sm_events` - List all upcoming Shellmates events\n"
+                "`/sm_addevent` - Add a new event (Admin only)\n"
+                "`/sm_modifyevent` - Modify an existing event (Admin only)\n"
+                "`/sm_removeevent` - Remove an event (Admin only)\n"
+                "`/sm_clearevents` - Clear all events (Admin only)\n"
             ),
             inline=False
         )
@@ -30,7 +32,10 @@ class Help(commands.Cog):
         embed.add_field(
             name="🔒 Cybersecurity Commands",
             value=(
-                "`/shellmates_fact` - Get a random cybersecurity fact\n"
+                "`/sm_fact` - Get a random cybersecurity fact\n"
+                "`/sm_addfact` - Add a new fact (Admin only)\n"
+                "`/sm_removefact` - Remove a fact (Admin only)\n"
+                "`/sm_listfacts` - List all facts (Admin only)\n"
             ),
             inline=False
         )
@@ -44,7 +49,7 @@ class Help(commands.Cog):
             inline=False
         )
         
-        embed.set_footer(text="Shellmates Cybersecurity Club | Stay secure! 🔐")
+        embed.set_footer(text="Shellmates Cybersecurity Club | MongoDB-backed • Stay secure! 🔐")
         
         await interaction.response.send_message(embed=embed)
 

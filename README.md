@@ -48,14 +48,14 @@ A Discord bot designed to help cybersecurity club members stay informed about up
 - `/sm_events` - List all upcoming events
 - `/sm_addevent [title] [date] [description]` - Add a new event (Admin only)
 - `/sm_removeevent [title]` - Remove an event (Admin only)
-- `/sm_cyberfact` - Get a random cybersecurity fact
+- `/sm_fact` - Get a random cybersecurity fact
 
 ## Project Structure
 
 - `bot.py` - Main bot code
 - `requirements.txt` - Python dependencies
-- `events.json` - Stores event data
-- `cyber_facts.json` - Stores cybersecurity facts
+- `bot/utils/database.py` - MongoDB database helpers
+- `bot/utils/config.py` - Environment variable loading
 - `.env` - Configuration file (not included in version control)
 
 ## Team Roles

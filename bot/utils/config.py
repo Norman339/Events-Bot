@@ -1,7 +1,10 @@
 import os
 from dotenv import load_dotenv
+import os
 
-load_dotenv()
+# Load .env from project root and override any existing shell env
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+load_dotenv(os.path.join(PROJECT_ROOT, ".env"), override=True)
 
 class Config:
     TOKEN = os.getenv("DISCORD_TOKEN")
