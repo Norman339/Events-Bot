@@ -44,19 +44,19 @@ A Discord bot designed to help cybersecurity club members stay informed about up
 
 ## Available Commands
 
-🎯 Event Management
--`/sm_events - Display all upcoming events on the chessboard`
--`/sm_addevent - Place a new event on the board (♚ Admin only)`
--`/sm_removeevent - Remove an event from the board (♚ Admin only)`
--`/sm_clearevents - Clear all events from the board (♚ Admin only)`
--`/sm_modifyevent - Reposition an existing event (♚ Admin only)`
-🛡️ Security facts
--`/sm_fact - Receive a random cybersecurity insight from the chess masters`
--`/sm_addfact - Add new strategic knowledge (♚ Admin only)`
--`/sm_removefact - Retire outdated insights (♚ Admin only)`
--`/sm_listfacts - Review the complete knowledge vault (♚ Admin only)`
-ℹ️  Assistance
--`/sm_help - Display this strategic command overview`
+-🎯 Event Management
+   -`/sm_events - Display all upcoming events on the chessboard`
+   -`/sm_addevent - Place a new event on the board (♚ Admin only)`
+   -`/sm_removeevent - Remove an event from the board (♚ Admin only)`
+   -`/sm_clearevents - Clear all events from the board (♚ Admin only)`
+   -`/sm_modifyevent - Reposition an existing event (♚ Admin only)`
+-🛡️ Security facts
+   -`/sm_fact - Receive a random cybersecurity insight from the chess masters`
+   -`/sm_addfact - Add new strategic knowledge (♚ Admin only)`
+   -`/sm_removefact - Retire outdated insights (♚ Admin only)`
+   -`/sm_listfacts - Review the complete knowledge vault (♚ Admin only)`
+-ℹ️  Assistance
+   -`/sm_help - Display this strategic command overview`
 
 ## Project Structure
 
@@ -104,4 +104,5 @@ A Discord bot designed to help cybersecurity club members stay informed about up
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
